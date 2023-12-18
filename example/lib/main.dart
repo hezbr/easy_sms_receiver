@@ -7,11 +7,6 @@ import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // request the SMS permission, then initialize the background service
-  Permission.sms.request().then((status) {
-    if (status.isGranted) initializeService();
-  });
   runApp(const MyApp());
 }
 

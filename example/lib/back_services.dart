@@ -6,6 +6,8 @@ import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 
 // function to initialize the background service
+// call this function in main to initializeService to start 
+// the sms listening in the background
 Future<void> initializeService() async {
   final service = FlutterBackgroundService();
 

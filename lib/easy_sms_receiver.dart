@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 part 'constant.dart';
@@ -14,40 +13,35 @@ class EasySmsReceiver {
   static EasySmsReceiver get instance => _instance;
 
   EasySmsReceiver._newInstance() {
-    _channel.setMethodCallHandler(handler);
+    _channel.setMethodCallHandler(_handler);
   }
 
   void listenIncomingSms({required MessageHandler onNewMessage}) {
-    startMsgService();
+    _startMsgService();
     _onNewMessage = onNewMessage;
   }
 
   void stopListenIncomingSms() {
-    stopMsgService();
+    _stopMsgService();
   }
 
-  @visibleForTesting
-  void startMsgService() {
+  void _startMsgService() {
     _channel.invokeMethod<String?>(START_RECEIVER_METHOD);
   }
 
-  @visibleForTesting
-  void stopMsgService() async {
+  void _stopMsgService() async {
     _channel.invokeMethod<String?>(STOP_RECEIVER_METHOD);
   }
 
-  @visibleForTesting
-  Future<dynamic> handler(MethodCall call) async {
+  /// ## Do not call this method. This method is visible only for testing.
+  // @visibleForTesting
+  Future<dynamic> _handler(MethodCall call) async {
     switch (call.method) {
       case ON_MESSAGE_METHOD:
         final message = (call.arguments as Map).cast<String, dynamic>();
         // print(":::::::::on-message the message: ${message.body}");
         return _onNewMessage(SmsMessage.fromMap(message));
     }
-  }
-
-  void test() {
-    _channel.invokeMethod<String>('test');
   }
 }
 

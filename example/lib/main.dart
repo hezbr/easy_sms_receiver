@@ -1,3 +1,4 @@
+import 'package:easy_sms_receiver_example/back_services.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -6,6 +7,11 @@ import 'package:permission_handler/permission_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // request the SMS permission, then initialize the background service
+  Permission.sms.request().then((status) {
+    if (status.isGranted) initializeService();
+  });
   runApp(const MyApp());
 }
 
@@ -17,8 +23,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-  final easySmsReceiver = EasySmsReceiver.instance;
+  final EasySmsReceiver easySmsReceiver = EasySmsReceiver.instance;
   String _easySmsReceiverStatus = "Undefined";
   String _message = "";
 

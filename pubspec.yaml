@@ -1,7 +1,7 @@
 name: easy_sms_receiver
 description: "A Flutter plugin to receive Android SMS in an easy way, and works well in the background by use flutter_background_service plugin."
 version: 0.0.1
-homepage: null
+homepage: https://github.com/hezbr/easy_sms_receiver.git
 
 environment:
   sdk: '>=3.2.2 <4.0.0'

@@ -127,7 +127,7 @@ void main() async {
 
 ## Stop the sms receiver
 
-**You can stop the listening to incoming SMS by calling the stopListenIncomingSms function as follow:**
+**You can stop the listening to incoming SMS by calling the `stopListenIncomingSms` function as follow:**
 
 ```dart
 easySmsReceiver.stopListenIncomingSms();
